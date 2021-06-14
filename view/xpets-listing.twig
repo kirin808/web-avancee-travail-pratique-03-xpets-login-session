@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>X-Pets - Adoption d'animaux avec superpouvoirs</title>
+	<meta name="description" content="Portail d'accueil de X-Pets, un centre d'hébergement et d'adoption pour animaux mutants">
+
+	<!-- Fonts -->
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="styles/main.css">
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="scripts/script.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Bienvenue chez Xpets Intl. !</h1>
+		<span class="tagline">Notre mission, trouver votre meilleur ami !</span>
+		
+		<nav>
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}teams">Voir les équipes</a>
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}classes">Voir les classes</a>
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}superpowers">Voir les superpouvoirs</a>
+		</nav>
+	</header>
+	
+	<main>
+		<section class="animal-listing">
+			<h2>Nos animaux</h2>
+			
+			{% include "includes/xpets-grid.twig" %}
+			
+		</section>
+
+		<div class="actions">
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/formulaire">Ajouter un animal</a>
+		</div>
+	</main>
+</body>
+</html>
