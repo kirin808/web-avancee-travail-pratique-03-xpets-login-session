@@ -50,18 +50,15 @@
 			};
 		}
 
-		//join superpower on superpower.id = xpet.superpowerId
-		public function getXpetsByCategoryIdSlug($cat, $id, $slug) {
+		public function getXpetsByCategoryId($cat, $id) {
 			$stmt = $this->prepareStmt( 
 				"$this->baseSelectQuery
-				where $cat.id = :id
-					and $cat.slug = :slug"
+				where $cat.id = :id"					
 			);
 
 			if($stmt->execute(
 					[
-						":id" => $id,
-						":slug" => $slug
+						":id" => $id
 					]
 				)
 			) {

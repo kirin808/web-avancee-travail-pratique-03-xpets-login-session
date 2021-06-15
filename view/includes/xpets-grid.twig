@@ -13,8 +13,9 @@
 			<dt>Description : </dt>
 			<dd>{{ xpet.description }}</dd>
 		</dl>
-		
+		{% if canEdit %}
 		<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/formulaire/{{ xpet.id }}">Mettre à jour</a>
+		{% endif %}
 	</article>				
 	{% endfor %}
 </div>

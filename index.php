@@ -29,6 +29,10 @@
 	if($url == "/"){
 		FileManager::redirect("xpets");
 	} else{
+		if(!(strpos($slug, "login") === 0)) {
+			$_SESSION["referer"] = $slug;
+		}
+
 		$requestUrl = $url[0];
 		
 		//recuperer le controleur
@@ -49,6 +53,10 @@
 					echo $controller->index($url[1], $url[2]);
 				} else {
 					$method = $url[1];
+
+					if($method === "formulaire" && !SessionManager::canEdit()) {
+						FileManager::redirect("xpets");
+					}
 
 					if(isset($url[2]) && is_numeric($url[2])) {
 						$id = $url[2];

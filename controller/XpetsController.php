@@ -12,14 +12,18 @@
 
 		public function index($id = null, $slug = null) {
 			$xpetDAO = new XpetDAO();
+			$vars = [];
 
 			if($id != null && $slug != null) {
 				if($xp = $xpetDAO->getXpetByIdSlug($id, $slug)) {
-					return TwigController::render(
-						"xpet-record",
+					$vars =
 						[
 							"xpet" => $xp
-						]
+						];
+					
+					return TwigController::render(
+						"xpet-record",
+						$vars
 					);
 				} else {
 					FileManager::redirect("xpets");
@@ -33,7 +37,7 @@
 			return TwigController::render(
 				"xpets-listing",
 				[
-					"rootPath" => __DIR__,
+					"entryLabelTextPlur" => "animaux",
 					"xpets" => $xp
 				]
 			);

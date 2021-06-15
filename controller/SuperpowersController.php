@@ -13,14 +13,14 @@
 			$spowerDAO = new SuperpowerDAO();
 						
 			if($id != null && $slug != null) {
-				$xpetDAO = new XpetDAO();
-				$sp = $spowerDAO->getSuperpowerById($id);
-
-				if($xp = $xpetDAO->getXpetsByCategoryIdSlug("superpower", $id, $slug)) {
+				if($spower = $spowerDAO->selectByIdSlug($id, $slug)) {
+					$xpetDAO = new XpetDAO();					
+					$xp = $xpetDAO->getXpetsByCategoryId("superpower", $id);
+					
 					return TwigController::render(
 						"category-record",
 						[
-							"entry" => $sp,
+							"entry" => $spower,
 							"xpets" => $xp,
 							"controllerSlug" => $this->controllerSlug,
 
@@ -52,13 +52,9 @@
 		}
 
 		public function formulaire($id = null) {
-			if(isset($_SESSION["superpowerId"])) {
-				unset($_SESSION["superpowerId"]);
-			}
+			SessionManager::canEdit();
 			
 			if($id != null) {
-				$_SESSION["superpowerId"] = $id;
-
 				$spowerDAO = new SuperpowerDAO();
 				$sp = $spowerDAO->getSuperpowerById($id);
 

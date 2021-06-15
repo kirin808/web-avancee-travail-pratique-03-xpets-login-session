@@ -8,7 +8,7 @@
 		static private $controllerPath = ROOTPATH . "controller/";
 		static private $libPath = ROOTPATH . "lib/";
 
-		static private $host = "http://192.168.50.238" . ROOTDIR;
+		static private $host = "https://akira.info" . ROOTDIR;
 
 		static function model($page){
 			return require_once self::$modelPath . $page. self::$extension;

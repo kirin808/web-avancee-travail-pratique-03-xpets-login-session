@@ -16,6 +16,13 @@
 					"cache" => false
 				)
 			);
+
+			$twig->addGlobal("isLoggedIn", SessionManager::isLoggedIn());
+			$twig->addGlobal("canEdit", SessionManager::canEdit());
+
+			if(isset($_SESSION["userFName"])) {
+				$twig->addGlobal("userFirstName", $_SESSION["userFName"]);
+			}
 				
 			return $twig->render($template . self::$ext, $data);
 		}

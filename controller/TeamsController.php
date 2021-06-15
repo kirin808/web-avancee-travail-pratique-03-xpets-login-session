@@ -9,14 +9,14 @@
 	class TeamsController {
 		private $controllerSlug = "teams";
 
-		public function index($id = null, $slug = null) {
+		public function index($id = null, $slug = null) {				
 			$teamDAO = new TeamDAO();
-						
-			if($id != null && $slug != null) {
-				$xpetDAO = new XpetDAO();
-				$team = $teamDAO->getTeamById($id);
 
-				if($xp = $xpetDAO->getXpetsByCategoryIdSlug("team", $id, $slug)) {
+			if($id != null && $slug != null) {
+				if($team = $teamDAO->selectByIdSlug($id, $slug)) {
+					$xpetDAO = new XpetDAO();					
+					$xp = $xpetDAO->getXpetsByCategoryId("team", $id);
+					
 					return TwigController::render(
 						"category-record",
 						[

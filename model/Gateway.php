@@ -128,6 +128,27 @@
 			}
 		}
 
+		function selectByIdSlug($id, $slug) {
+			$stmt = $this->prepareStmt( 
+				"SELECT *
+				from $this->table
+				where $this->table.$this->primaryKey = :id
+					and $this->table.slug = :slug"
+			);
+			
+			if($stmt->execute(
+				[
+					":id" => $id,
+					":slug" => $slug
+				]
+			)
+			) {
+				return $stmt->fetch();
+			} else {
+				return false;
+			};
+		}
+
 		function deleteById($id) {
 			$stmt = $this->prepareStmt("DELETE from $this->table where $this->primaryKey = :id");
 			echo $id;

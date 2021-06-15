@@ -13,10 +13,10 @@
 			$classDAO = new classDAO();
 						
 			if($id != null && $slug != null) {
-				$xpetDAO = new XpetDAO();
-				$class = $classDAO->getClassById($id);
-
-				if($xp = $xpetDAO->getXpetsByCategoryIdSlug("class", $id, $slug)) {
+				if($class = $classDAO->selectByIdSlug($id, $slug)) {
+					$xpetDAO = new XpetDAO();					
+					$xp = $xpetDAO->getXpetsByCategoryId("superpower", $id);
+					
 					return TwigController::render(
 						"category-record",
 						[

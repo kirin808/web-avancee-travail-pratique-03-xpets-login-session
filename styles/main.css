@@ -65,6 +65,10 @@ p {
 	max-width: 60ch;
 }
 
+header > * {
+	display: block;
+}
+
 
 
 
